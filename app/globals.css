@@ -74,6 +74,12 @@ button {
   animation-range: entry 8% cover 28%;
 }
 
+.heading-reveal {
+  animation: heading-slide both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+
 @keyframes reveal {
   from {
     opacity: 0;
@@ -83,6 +89,20 @@ button {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes heading-slide {
+  from {
+    opacity: 0;
+    transform: translateY(80px) scale(0.92);
+    filter: blur(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
   }
 }
 
@@ -126,7 +146,7 @@ button {
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  transition: transform 0.15s ease-out, opacity 0.15s ease-out;
+  transition: transform 0.15s ease-out, opacity 0.15s ease-out, background 0.3s ease;
 }
 
 .custom-cursor::after {
@@ -140,6 +160,20 @@ button {
   background: #E8442F;
   transform: translate(-50%, -50%);
   animation: cursor-pulse 1.5s ease-in-out infinite;
+}
+
+.accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(.4,0,.2,1);
+}
+
+.accordion-content.open {
+  grid-template-rows: 1fr;
+}
+
+.accordion-content > * {
+  overflow: hidden;
 }
 
 @keyframes cursor-pulse {

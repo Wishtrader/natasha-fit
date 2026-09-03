@@ -61,17 +61,17 @@ function VisualBreak() {
         <span className="self-end whitespace-nowrap text-[9px] tracking-[.12em] text-[#aaa39a] max-md:ml-[35px]">НАТАЛЬЯ КОРОТКАЯ · NATASHAFIT</span>
       </div>
       <div className="grid grid-cols-[1fr_1fr_1.35fr] items-end gap-[14px] max-md:grid-cols-[1fr_1fr]">
-        <figure className="relative m-0 overflow-hidden aspect-[1/1.12] max-md:[&.gallery-detail]:col-span-full max-md:[&.gallery-detail]:aspect-[1.7/1]">
-          <img className="h-full w-full object-cover saturate-[.7] transition-[transform,filter] duration-800 ease-[cubic-bezier(.2,.7,.2,1)] hover:saturate-100" src="/natasha-fitness-mobility.png" alt="Упражнение на мобильность" />
-          <figcaption className="absolute bottom-[13px] left-[15px] text-[9px] tracking-[.13em] text-black" style={{ textShadow: '0 1px 8px rgba(0, 0, 0, .4)' }}>МОБИЛЬНОСТЬ</figcaption>
+        <figure className="group relative m-0 overflow-hidden aspect-[1/1.12] max-md:[&.gallery-detail]:col-span-full max-md:[&.gallery-detail]:aspect-[1.7/1]">
+          <img className="h-full w-full object-cover saturate-[.7] grayscale transition-[transform,filter] duration-800 ease-[cubic-bezier(.2,.7,.2,1)] group-hover:saturate-100 group-hover:grayscale-0" src="/natasha-fitness-mobility.png" alt="Упражнение на мобильность" />
+          <figcaption className="absolute bottom-[13px] left-[15px] origin-bottom-left text-[9px] tracking-[.13em] text-black transition-all duration-300 group-hover:scale-200 group-hover:font-bold" style={{ textShadow: '0 1px 8px rgba(0, 0, 0, .4)' }}>МОБИЛЬНОСТЬ</figcaption>
         </figure>
-        <figure className="relative m-0 overflow-hidden aspect-[1/1.12]">
-          <img className="h-full w-full object-cover saturate-[.7] transition-[transform,filter] duration-800 ease-[cubic-bezier(.2,.7,.2,1)] hover:saturate-100" src="/natasha-fitness-strength.png" alt="Силовое упражнение" />
-          <figcaption className="absolute bottom-[13px] left-[15px] text-[9px] tracking-[.13em] text-black" style={{ textShadow: '0 1px 8px rgba(0, 0, 0, .4)' }}>СИЛА</figcaption>
+        <figure className="group relative m-0 overflow-hidden aspect-[1/1.12]">
+          <img className="h-full w-full object-cover saturate-[.7] grayscale transition-[transform,filter] duration-800 ease-[cubic-bezier(.2,.7,.2,1)] group-hover:saturate-100 group-hover:grayscale-0" src="/natasha-fitness-strength.png" alt="Силовое упражнение" />
+          <figcaption className="absolute bottom-[13px] left-[15px] origin-bottom-left text-[9px] tracking-[.13em] text-black transition-all duration-300 group-hover:scale-200 group-hover:font-bold" style={{ textShadow: '0 1px 8px rgba(0, 0, 0, .4)' }}>СИЛА</figcaption>
         </figure>
-        <figure className="gallery-detail relative m-0 overflow-hidden aspect-[1/1.12] max-md:col-span-full max-md:aspect-[1.7/1]">
-          <img className="h-full w-full object-cover saturate-[.7] transition-[transform,filter] duration-800 ease-[cubic-bezier(.2,.7,.2,1)] hover:saturate-100" src="/natasha-fitness-detail.png" alt="Деталь инвентаря для тренировки" />
-          <figcaption className="absolute bottom-[13px] left-[15px] text-[9px] tracking-[.13em] text-white" style={{ textShadow: '0 1px 8px rgba(0, 0, 0, .4)' }}>ВНИМАНИЕ К ДЕТАЛЯМ</figcaption>
+        <figure className="gallery-detail group relative m-0 overflow-hidden aspect-[1/1.12] max-md:col-span-full max-md:aspect-[1.7/1]">
+          <img className="h-full w-full object-cover saturate-[.7] grayscale transition-[transform,filter] duration-800 ease-[cubic-bezier(.2,.7,.2,1)] group-hover:saturate-100 group-hover:grayscale-0" src="/natasha-fitness-detail.png" alt="Деталь инвентаря для тренировки" />
+          <figcaption className="absolute bottom-[13px] left-[15px] origin-bottom-left text-[9px] tracking-[.13em] text-white transition-all duration-300 group-hover:scale-200 group-hover:font-bold" style={{ textShadow: '0 1px 8px rgba(0, 0, 0, .4)' }}>ВНИМАНИЕ К ДЕТАЛЯМ</figcaption>
         </figure>
       </div>
     </section>
@@ -83,6 +83,15 @@ export default function Home() {
   const [faqOpen, setFaqOpen] = useState<number | null>(0)
   const [time, setTime] = useState({ days: '04', hours: '12', minutes: '36', seconds: '18' })
   const [banner, setBanner] = useState(0)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   useEffect(() => {
     const cursor = document.querySelector('.custom-cursor') as HTMLElement
@@ -91,6 +100,14 @@ export default function Home() {
     const moveCursor = (e: MouseEvent) => {
       cursor.style.left = `${e.clientX}px`
       cursor.style.top = `${e.clientY}px`
+
+      const target = e.target as HTMLElement
+      const isOnRed = target.closest('.bg-red') || target.closest('[class*="bg-red"]')
+      if (isOnRed) {
+        cursor.style.background = '#171716'
+      } else {
+        cursor.style.background = '#E8442F'
+      }
     }
 
     window.addEventListener('mousemove', moveCursor)
@@ -112,16 +129,19 @@ export default function Home() {
   return (
     <main>
       <div className="custom-cursor" />
-      <header className="relative z-20 flex h-[82px] items-center justify-between border-b border-line bg-cream px-[1vw] py-[18px] max-md:h-[70px] max-md:px-[6vw] max-md:py-[16px]">
-        <a href="#top" className="flex flex-col font-serif text-[28px] font-bold leading-[.75] tracking-[-.06em] max-md:text-[24px]">
-          Natasha<span className="text-red">FIT</span>
-          <small className="mt-2 text-[9px] font-sans tracking-[.1em]">НАТАЛЬЯ КОРОТКАЯ</small>
+      <header className={`sticky top-0 z-20 flex items-center justify-between border-b border-line bg-cream px-[1vw] transition-all duration-500 ease-[cubic-bezier(.4,0,.2,1)] max-md:px-[6vw] ${scrolled ? 'h-[56px] max-md:h-[50px]' : 'h-[82px] max-md:h-[70px]'}`}>
+        <a href="#top" className={`flex font-serif font-bold leading-[.75] tracking-[-.06em] transition-all duration-500 ease-[cubic-bezier(.4,0,.2,1)] ${scrolled ? 'flex-row items-baseline' : 'flex-col'}`}>
+          <span className={`transition-all duration-500 ease-[cubic-bezier(.4,0,.2,1)] ${scrolled ? 'text-[22px] max-md:text-[18px]' : 'text-[28px] max-md:text-[24px]'}`}>Natasha</span>
+          <span className={`text-red transition-all duration-500 ease-[cubic-bezier(.4,0,.2,1)] ${scrolled ? 'ml-0 text-[22px] max-md:text-[18px]' : 'text-[28px] max-md:text-[24px]'}`}>FIT</span>
+          <small className={`text-[9px] font-sans tracking-[.1em] transition-all duration-500 ease-[cubic-bezier(.4,0,.2,1)] ${scrolled ? 'max-h-0 w-0 overflow-hidden opacity-0' : 'mt-2 opacity-100'}`}>НАТАЛЬЯ КОРОТКАЯ</small>
         </a>
-        <nav className={`flex items-center gap-[clamp(18px,3vw,48px)] text-[11px] font-bold tracking-[.09em] max-md:absolute max-md:left-0 max-md:right-0 max-md:top-[69px] max-md:flex max-md:flex-col max-md:items-start max-md:border-b max-md:border-line max-md:bg-cream max-md:px-[6vw] max-md:py-[25px] ${menuOpen ? 'max-md:flex' : 'max-md:hidden'}`}>
+        <nav className={`flex items-center gap-[clamp(18px,3vw,48px)] text-[11px] font-bold max-md:absolute max-md:left-0 max-md:right-0 max-md:top-[69px] max-md:flex max-md:flex-col max-md:items-start max-md:border-b max-md:border-line max-md:bg-cream max-md:px-[6vw] max-md:py-[25px] ${menuOpen ? 'max-md:flex' : 'max-md:hidden'}`}>
           {nav.map(([label, href]) => (
-            <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>
+            <div key={href} className="w-[90px] overflow-hidden">
+              <a href={href} className="block whitespace-nowrap transition-all duration-300 hover:text-red! hover:underline hover:tracking-[.15em]" onClick={() => setMenuOpen(false)}>{label}</a>
+            </div>
           ))}
-          <a href="#register" className="text-red" onClick={() => setMenuOpen(false)}>РЕГИСТРАЦИЯ <span className="ml-2 text-[18px]">↗</span></a>
+          <a href="#register" className="group inline-flex items-center border border-red px-[16px] py-[8px] text-red! transition-all duration-300 hover:bg-red hover:text-white!" onClick={() => setMenuOpen(false)}>РЕГИСТРАЦИЯ <ArrowUpRight className="ml-2 text-red transition-colors duration-300 group-hover:text-white!" size={17} /></a>
         </nav>
         <button className="hidden flex-col gap-[6px] border-0 bg-none p-[10px_0_10px_10px] max-md:flex" onClick={() => setMenuOpen(!menuOpen)} aria-label="Открыть меню">
           <span className="w-[28px] border-t-2 border-foreground" />
@@ -178,15 +198,15 @@ export default function Home() {
       <section className="section w-full grid grid-cols-[.9fr_1.1fr] gap-[6vw] px-[1vw] py-[115px] max-md:flex max-md:flex-col max-md:gap-[50px] max-md:px-[5vw] max-md:py-[80px]" id="result">
         <div className="mb-[70px] max-w-[810px] max-md:mb-[45px]">
           <p className="mb-6 text-[10px] font-bold tracking-[.14em]">ПЕРВЫЕ ИЗМЕНЕНИЯ</p>
-          <h2 className="font-serif text-[clamp(50px,9vw,100px)] font-semibold leading-[.93] tracking-[-.055em]">Как изменятся ощущения<br />в теле за 5 дней</h2>
+          <h2 className="heading-reveal font-serif text-[clamp(50px,9vw,100px)] font-semibold leading-[.93] tracking-[-.055em]">Как изменятся ощущения<br />в теле за 5 дней</h2>
         </div>
         <div className="border-t border-line">
           {[['Меньше отёчности', 'Почувствуете больше лёгкости в ногах и теле после движения.'], ['Больше тонуса', 'Начнёте лучше чувствовать работу ягодиц, ног и корпуса.'], ['Больше подвижности', 'Добавите движения стопам, тазу, позвоночнику и плечам.'], ['Первый шаг к изменению фигуры', 'Поймёте, как комплексно работать над более подтянутым силуэтом.']].map(([title, copy], i) => (
-            <div className="grid grid-cols-[70px_1fr] gap-[20px] border-b border-line py-[28px]" key={title}>
+            <div className="group grid grid-cols-[70px_1fr] gap-[20px] border-b border-line px-[12px] py-[28px] transition-colors duration-[400ms] ease-[cubic-bezier(.4,0,.2,1)] hover:bg-red/10" key={title}>
               <span className="text-[11px] font-bold text-red">0{i + 1}</span>
               <div>
-                <h3 className="m-0 mb-[10px] text-[17px] font-semibold leading-[1.05] uppercase tracking-[.02em]">{title}</h3>
-                <p className="m-0 text-[14px] leading-[1.5]">{copy}</p>
+                <h3 className="m-0 mb-[10px] text-[17px] font-semibold leading-[1.05] uppercase tracking-[.02em] transition-[transform,color] duration-[400ms] ease-[cubic-bezier(.4,0,.2,1)] group-hover:-translate-x-1 group-hover:text-red">{title}</h3>
+                <p className="m-0 text-[14px] leading-[1.5] transition-[transform,color] duration-[400ms] ease-[cubic-bezier(.4,0,.2,1)] group-hover:translate-x-1 group-hover:text-red/80">{copy}</p>
               </div>
             </div>
           ))}
@@ -216,13 +236,13 @@ export default function Home() {
       <section className="section bg-[#e5ded4] w-full px-[1vw] py-[115px] max-md:px-[7vw] max-md:py-[80px]" id="audience">
         <div className="mb-[70px] max-w-[710px] max-md:mb-[45px]">
           <p className="mb-6 text-[10px] font-bold tracking-[.14em]">ПРОВЕРЬТЕ СЕБЯ</p>
-          <h2 className="font-serif text-[clamp(50px,7vw,100px)] font-semibold leading-[.93] tracking-[-.055em]">Для кого этот<br /><em className="not-italic text-red">интенсив</em></h2>
+          <h2 className="heading-reveal font-serif text-[clamp(50px,7vw,100px)] font-semibold leading-[.93] tracking-[-.055em]">Для кого этот<br /><em className="not-italic text-red">интенсив</em></h2>
           <p className="mt-[30px] max-w-[560px] text-[16px] leading-[1.55]">Если вы смотрите на своё тело и понимаете: пора что-то менять. Неважно, давно вы не тренировались или уже занимаетесь.</p>
         </div>
         <div className="grid grid-cols-3 gap-px border border-line bg-line max-md:grid-cols-1">
           {audience.map(([num, title, copy]) => (
-            <article className="bg-[#e5ded4] p-[25px] min-h-[210px] max-md:min-h-[170px]" key={num}>
-              <span className="text-[11px] font-bold text-red">{num}</span>
+            <article className="group bg-[#e5ded4] p-[25px] min-h-[210px] transition-colors duration-300 hover:bg-red hover:text-white max-md:min-h-[170px]" key={num}>
+              <span className="text-[11px] font-bold text-red transition-colors duration-300 group-hover:text-white">{num}</span>
               <h3 className="mt-[55px] max-w-[230px] text-[17px] font-semibold leading-[1.05] uppercase tracking-[.02em] max-md:mt-[35px]">{title}</h3>
               <p className="mx-0 mt-4 max-w-[260px] text-[14px] leading-[1.5]">{copy}</p>
             </article>
@@ -242,7 +262,7 @@ export default function Home() {
         </div>
         <div className="py-[10vw] px-[8vw] max-md:px-[7vw] max-md:py-[75px] max-md:pb-[95px]">
           <p className="mb-6 text-[10px] font-bold tracking-[.14em]">ВАШ ТРЕНЕР НА ЭТИ 5 ДНЕЙ</p>
-          <h2 className="font-serif text-[clamp(70px,8vw,125px)] font-semibold leading-[.93] tracking-[-.055em]">Наталья<br /><em className="not-italic text-white">Короткая</em></h2>
+          <h2 className="heading-reveal font-serif text-[clamp(70px,8vw,125px)] font-semibold leading-[.93] tracking-[-.055em]">Наталья<br /><em className="not-italic text-white">Короткая</em></h2>
           <h3 className="mx-0 mb-[26px] mt-[45px] max-w-[560px] font-serif text-[27px]/[1.1]">Я не хочу дать вам ещё пять тренировок. Я хочу, чтобы за эти 5 дней вы почувствовали разницу в теле и поняли, что делать дальше.</h3>
           <p className="mx-0 mb-[15px] max-w-[510px] text-[15px] leading-[1.5]">Более 10 лет я помогаю женщинам лучше чувствовать мышцы, понимать технику и тренировать тело не по частям, а комплексно.</p>
           <p className="mx-0 max-w-[510px] text-[15px] leading-[1.5]">На интенсиве мы пойдём шаг за шагом: от стоп до всего тела, чтобы вы понимали, зачем мы делаем упражнения и как это ведёт к результату.</p>
@@ -261,7 +281,7 @@ export default function Home() {
       <section className="section w-full bg-cream px-[1vw] py-[115px] max-md:px-[7vw] max-md:py-[80px]" id="program">
         <div className="mb-[70px] max-w-[710px] max-md:mb-[45px]">
           <p className="mb-6 text-[10px] font-bold tracking-[.14em]">ПРОГРАММА</p>
-          <h2 className="font-serif text-[clamp(50px,7vw,100px)] font-semibold leading-[.93] tracking-[-.055em]">5 дней — всё тело</h2>
+          <h2 className="heading-reveal font-serif text-[clamp(50px,7vw,100px)] font-semibold leading-[.93] tracking-[-.055em]">5 дней — всё тело</h2>
           <p className="mt-[30px] max-w-[560px] text-[16px] leading-[1.55]">За 5 дней пройдём всё тело: от стоп до комплексной тренировки. Шаг за шагом возвращаем телу движение и соединяем всё в одну систему.</p>
         </div>
         <div className="mb-[50px] mt-[-20px] flex items-center max-md:mt-[-5px]">
@@ -300,7 +320,7 @@ export default function Home() {
       <section className="nutrition w-full grid grid-cols-2 gap-[9vw] bg-foreground px-[1vw] py-[110px] text-cream max-md:flex max-md:flex-col max-md:gap-[50px] max-md:px-[7vw] max-md:py-[80px]">
         <div>
           <p className="mb-6 text-[10px] font-bold tracking-[.14em]">БОНУС · 03 ОКТЯБРЯ · 12:00</p>
-          <h2 className="font-serif text-[clamp(60px,8vw,120px)] font-semibold leading-[.93] tracking-[-.055em]">Спецэфир c<br /><em className="not-italic text-white">нутрициологом</em></h2>
+          <h2 className="heading-reveal font-serif text-[clamp(60px,8vw,120px)] font-semibold leading-[.93] tracking-[-.055em]">Спецэфир c<br /><em className="not-italic text-white">нутрициологом</em></h2>
           <h3 className="mx-0 mb-[18px] mt-[38px] max-w-[500px] font-serif text-[28px]/[1.1]">Как снизить вес на 3–10 кг и удерживать результат без постоянных диет, запретов и откатов</h3>
           <p className="mx-0 mb-[30px] max-w-[460px] text-[15px] leading-[1.55]">Чтобы снижать вес, одной тренировки недостаточно. Поэтому в интенсиве будет отдельный эфир с понятной системой питания и конкретными рекомендациями.</p>
           <a className="inline-flex items-center bg-red px-[23px] py-[17px] text-[11px] font-bold tracking-[.12em] text-white transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-dark-red" href="#register">
@@ -318,10 +338,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section bg-[#e5ded4] px-[10vw] py-[115px] max-md:px-[7vw] max-md:py-[80px]">
+      <section className="section bg-[#e5ded4] px-[1vw] py-[115px] max-md:px-[7vw] max-md:py-[80px]">
         <div className="mb-[70px] max-w-[710px] max-md:mb-[45px]">
           <p className="mb-6 text-[10px] font-bold tracking-[.14em]">ДОСТУП НАВСЕГДА</p>
-          <h2 className="font-serif text-[clamp(50px,7vw,100px)] font-semibold leading-[.93] tracking-[-.055em]">Интенсив закончится.<br /><em className="not-italic text-red">Доступ останется.</em></h2>
+          <h2 className="heading-reveal font-serif text-[clamp(50px,7vw,100px)] font-semibold leading-[.93] tracking-[-.055em]">Интенсив закончится.<br /><em className="not-italic text-red">Доступ останется.</em></h2>
         </div>
         <div className="grid grid-cols-4 gap-[16px] max-md:grid-cols-1">
           {[['5', 'ТРЕНИРОВОК', 'Основная программа интенсива'], ['+', '2 БОНУСНЫЕ ТРЕНИРОВКИ', 'Силовая на всё тело + комплекс для стоп'], ['+', 'ЭФИР С НУТРИЦИОЛОГОМ', 'Как снизить вес и удерживать результат'], ['∞', 'БЕССРОЧНЫЙ ДОСТУП', 'Смотрите и повторяйте в любое время']].map(([big, title, copy]) => (
@@ -336,10 +356,10 @@ export default function Home() {
         <Button />
       </section>
 
-      <section className="grid grid-cols-2 gap-[10vw] px-[10vw] py-[110px] max-md:flex max-md:flex-col max-md:gap-[50px] max-md:px-[7vw] max-md:py-[80px]">
+      <section className="grid grid-cols-2 gap-[10vw] px-[1vw] py-[110px] max-md:flex max-md:flex-col max-md:gap-[50px] max-md:px-[7vw] max-md:py-[80px]">
         <div>
           <p className="mb-6 text-[10px] font-bold tracking-[.14em]">МИНИМУМ ОБОРУДОВАНИЯ</p>
-          <h2 className="mb-[38px] font-serif text-[clamp(55px,7vw,100px)] font-semibold leading-[.93] tracking-[-.055em]">Что понадобится<br /><em className="not-italic text-red">для тренировок</em></h2>
+          <h2 className="heading-reveal mb-[38px] font-serif text-[clamp(55px,7vw,100px)] font-semibold leading-[.93] tracking-[-.055em]">Что понадобится<br /><em className="not-italic text-red">для тренировок</em></h2>
           <Button />
         </div>
         <div>
@@ -356,11 +376,11 @@ export default function Home() {
       </section>
 
       <section className="section grid grid-cols-[.75fr_1.25fr] gap-[8vw] bg-[#e5ded4] max-md:flex max-md:flex-col max-md:gap-[50px]">
-        <div className="px-[10vw] py-[115px] max-md:px-[7vw] max-md:py-[80px]">
+        <div className="px-[1vw] py-[115px] max-md:px-[7vw] max-md:py-[80px]">
           <p className="mb-6 text-[10px] font-bold tracking-[.14em]">ОТВЕТЫ</p>
-          <h2 className="font-serif text-[clamp(50px,7vw,100px)] font-semibold leading-[.93] tracking-[-.055em]">Остались<br /><em className="not-italic text-red">вопросы?</em></h2>
+          <h2 className="heading-reveal font-serif text-[clamp(50px,7vw,100px)] font-semibold leading-[.93] tracking-[-.055em]">Остались<br /><em className="not-italic text-red">вопросы?</em></h2>
         </div>
-        <div className="px-[10vw] py-[115px] max-md:px-[7vw] max-md:py-[80px]">
+        <div className="px-[1vw] py-[115px] max-md:px-[7vw] max-md:py-[80px]">
           <div className="border-t border-line">
             {faqs.map(([q, a], i) => (
               <div className="border-b border-line" key={q}>
@@ -369,16 +389,18 @@ export default function Home() {
                   onClick={() => setFaqOpen(faqOpen === i ? null : i)}
                   aria-expanded={faqOpen === i}
                 >
-                  <span>{q}</span>
+                  <span className="font-bold">{q}</span>
                   <b className="text-[23px] font-normal text-red">{faqOpen === i ? '−' : '+'}</b>
                 </button>
-                {faqOpen === i && (
-                  <p className="-mt-1 mb-[22px] mr-[35px] max-w-[600px] text-[14px] leading-[1.5]">{a}</p>
-                )}
+                <div className={`accordion-content ${faqOpen === i ? 'open' : ''}`}>
+                  <div>
+                    <p className="-mt-1 mb-[22px] mr-[35px] max-w-[600px] text-[14px] leading-[1.5]">{a}</p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
-          <div className="mt-[-30px] max-md:mt-0">
+          <div className="mt-[30px] max-md:mt-[20px]">
             <a className="inline-flex items-center bg-red px-[23px] py-[17px] text-[11px] font-bold tracking-[.12em] text-white transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-dark-red" href="#register">
               ЗАРЕГИСТРИРОВАТЬСЯ
               <ArrowUpRight className="ml-2" size={17} aria-hidden="true" />
@@ -389,7 +411,7 @@ export default function Home() {
 
       <section className="bg-red px-[8vw] py-[145px] text-center text-white max-md:px-[7vw] max-md:py-[100px] max-md:pb-[130px]" id="register">
         <p className="mb-[30px] text-[10px] font-bold tracking-[.14em]">NATASHAFIT · СТАРТ 28 СЕНТЯБРЯ</p>
-        <h2 className="font-serif text-[clamp(55px,8vw,125px)] font-semibold leading-[.93] tracking-[-.055em]">Дайте своему телу<br /><em className="text-foreground">5 дней</em> и почувствуйте<br />первые изменения сами</h2>
+        <h2 className="heading-reveal font-serif text-[clamp(55px,8vw,125px)] font-semibold leading-[.93] tracking-[-.055em]">Дайте своему телу<br /><em className="text-foreground">5 дней</em> и почувствуйте<br />первые изменения сами</h2>
         <a className="mt-[45px] inline-flex items-center bg-foreground px-[23px] py-[17px] text-[11px] font-bold tracking-[.12em] text-white transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-dark-red" href="#register">
           ЗАРЕГИСТРИРОВАТЬСЯ
           <ArrowUpRight className="ml-2" size={17} aria-hidden="true" />

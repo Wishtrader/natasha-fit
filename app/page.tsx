@@ -22,11 +22,11 @@ const audience = [
 ]
 
 const days = [
-  ['ДЕНЬ 1 · 28.09 · 19:00', 'Лёгкие ноги и сильная опора.', 'СТОПЫ И ГОЛЕНОСТОП', 'Мягко проработаем стопы и голени, добавим баланс и устойчивость.', 'меньше тяжести в стопах и ногах; больше свободы в голеностопе; лучше почувствуете опору'],
-  ['ДЕНЬ 2 · 29.09 · 19:00', 'Подвижные бёдра и ягодицы.', 'ТАЗ, БЁДРА И ЯГОДИЦЫ', 'Добавим движения тазу, проработаем ягодицы и бёдра и подключим силовые упражнения.', 'больше свободы в движениях таза; лучше почувствуете работу ягодиц; тонус ягодиц и бёдер'],
-  ['ДЕНЬ 3 · 30.09 · 19:00', 'Гибкий позвоночник и лёгкая спина.', 'ПОЗВОНОЧНИК И КОРПУС', 'Добавим движения грудному отделу и позвоночнику, поработаем с вращениями, дыханием и мышцами спины.', 'меньше скованности после сидения; больше свободы в корпусе; увидите связь подвижности и осанки'],
-  ['ДЕНЬ 4 · 01.10 · 19:00', 'Лёгкая шея и свободные плечи.', 'ШЕЯ, ЛОПАТКИ И ПЛЕЧИ', 'Мягко проработаем лопатки и плечевой пояс и научимся лучше контролировать верх тела.', 'меньше зажатости; больше свободы в движениях плеч; расслабленное ощущение верхней части тела'],
-  ['ДЕНЬ 5 · 02.10 · 19:00', 'Соединяем всё вместе.', 'ПОЛНОЦЕННАЯ ТРЕНИРОВКА', 'Соединим работу стоп, ног, ягодиц, таза, позвоночника и плеч. Добавим баланс и контроль.', 'почувствуете работу мышц всего тела; движения станут увереннее; увидите силу системной тренировки'],
+  ['ДЕНЬ 1 · 28.10 · 19:00', 'Лёгкие ноги и сильная опора.', 'СТОПЫ И ГОЛЕНОСТОП', 'Мягко проработаем стопы и голени, добавим баланс и устойчивость.', 'меньше тяжести в стопах и ногах; больше свободы в голеностопе; лучше почувствуете опору'],
+  ['ДЕНЬ 2 · 29.10 · 19:00', 'Подвижные бёдра и ягодицы.', 'ТАЗ, БЁДРА И ЯГОДИЦЫ', 'Добавим движения тазу, проработаем ягодицы и бёдра и подключим силовые упражнения.', 'больше свободы в движениях таза; лучше почувствуете работу ягодиц; тонус ягодиц и бёдер'],
+  ['ДЕНЬ 3 · 30.10 · 19:00', 'Гибкий позвоночник и лёгкая спина.', 'ПОЗВОНОЧНИК И КОРПУС', 'Добавим движения грудному отделу и позвоночнику, поработаем с вращениями, дыханием и мышцами спины.', 'меньше скованности после сидения; больше свободы в корпусе; увидите связь подвижности и осанки'],
+  ['ДЕНЬ 4 · 01.11 · 19:00', 'Лёгкая шея и свободные плечи.', 'ШЕЯ, ЛОПАТКИ И ПЛЕЧИ', 'Мягко проработаем лопатки и плечевой пояс и научимся лучше контролировать верх тела.', 'меньше зажатости; больше свободы в движениях плеч; расслабленное ощущение верхней части тела'],
+  ['ДЕНЬ 5 · 02.11 · 19:00', 'Соединяем всё вместе.', 'ПОЛНОЦЕННАЯ ТРЕНИРОВКА', 'Соединим работу стоп, ног, ягодиц, таза, позвоночника и плеч. Добавим баланс и контроль.', 'почувствуете работу мышц всего тела; движения станут увереннее; увидите силу системной тренировки'],
 ]
 
 const faqs = [
@@ -58,7 +58,7 @@ function VisualBreak() {
       <div className="mb-[55px] flex max-w-[920px] items-center gap-[18px] max-md:flex-wrap max-md:gap-[14px]">
         <Sparkles className="flex-none text-red" style={{ animation: 'pulse 2s ease-in-out infinite' }} size={20} aria-hidden="true" />
         <p className="m-0 font-serif text-[clamp(28px,4vw,58px)] leading-[1.05] tracking-[-.04em] max-md:flex-1 max-md:basis-[80%]">Движение — это не наказание. Это способ снова почувствовать себя в своём теле.</p>
-        <span className="self-end whitespace-nowrap text-[9px] tracking-[.12em] text-[#aaa39a] max-md:ml-[35px]">НАТАЛЬЯ КОРОТКАЯ · NATASHAFIT</span>
+        <span className="self-end whitespace-nowrap text-[9px] tracking-[.12em] text-[#aaa39a] max-md:ml-[35px]">НАТАЛЬЯ ФОМИНА· NATASHAFIT</span>
       </div>
       <div className="grid grid-cols-[1fr_1fr_1.35fr] items-end gap-[14px] max-md:grid-cols-[1fr_1fr]">
         <figure className="group relative m-0 overflow-hidden aspect-[1/1.12] max-md:[&.gallery-detail]:col-span-full max-md:[&.gallery-detail]:aspect-[1.7/1]">
@@ -133,7 +133,7 @@ export default function Home() {
         <a href="#top" className={`flex font-serif font-bold leading-[.75] tracking-[-.06em] transition-all duration-500 ease-[cubic-bezier(.4,0,.2,1)] ${scrolled ? 'flex-row items-baseline' : 'flex-col'}`}>
           <span className={`transition-all duration-500 ease-[cubic-bezier(.4,0,.2,1)] ${scrolled ? 'text-[22px] max-md:text-[18px]' : 'text-[28px] max-md:text-[24px]'}`}>Natasha</span>
           <span className={`text-red transition-all duration-500 ease-[cubic-bezier(.4,0,.2,1)] ${scrolled ? 'ml-0 text-[22px] max-md:text-[18px]' : 'text-[28px] max-md:text-[24px]'}`}>FIT</span>
-          <small className={`text-[9px] font-sans tracking-[.1em] transition-all duration-500 ease-[cubic-bezier(.4,0,.2,1)] ${scrolled ? 'max-h-0 w-0 overflow-hidden opacity-0' : 'mt-2 opacity-100'}`}>НАТАЛЬЯ КОРОТКАЯ</small>
+          <small className={`text-[9px] font-sans tracking-[.1em] transition-all duration-500 ease-[cubic-bezier(.4,0,.2,1)] ${scrolled ? 'max-h-0 w-0 overflow-hidden opacity-0' : 'mt-2 opacity-100'}`}>НАТАЛЬЯ ФОМИНА</small>
         </a>
         <nav className={`flex items-center gap-[clamp(18px,3vw,48px)] text-[11px] font-bold max-md:absolute max-md:left-0 max-md:right-0 max-md:top-[69px] max-md:flex max-md:flex-col max-md:items-start max-md:border-b max-md:border-line max-md:bg-cream max-md:px-[6vw] max-md:py-[25px] ${menuOpen ? 'max-md:flex' : 'max-md:hidden'}`}>
           {nav.map(([label, href]) => (
@@ -157,14 +157,14 @@ export default function Home() {
           <Button />
         </div>
         <div className="relative min-h-[650px] overflow-hidden bg-[#cfc4b5] max-md:min-h-[520px]">
-          <img className="h-full w-full object-cover contrast-[1.06] saturate-[.75]" src="/natasha-fitness-hero.png" alt="Наталья Короткая на тренировке" />
+          <img className="h-full w-full object-cover contrast-[1.06] saturate-[.75]" src="/natasha-fitness-hero.png" alt="Наталья ФоминаФомина  на тренировке" />
           <div className="absolute left-[34px] top-[34px] grid h-[90px] w-[90px] place-content-center rounded-full border border-foreground font-serif text-[40px]/[.7] text-center -rotate-12">
             5<br />
             <small className="text-[9px] font-sans tracking-[.8em] mt-4 ml-4 text-center">ДНЕЙ</small>
           </div>
           <div className="absolute bottom-[24px] right-[28px] text-[10px] leading-[1.4] tracking-[.12em]">
             СТАРТ<br />
-            <strong className="font-serif text-[62px]/[.75] tracking-[-.06em]">28.09</strong>
+            <strong className="font-serif text-[62px]/[.75] tracking-[-.06em]">28.10</strong>
           </div>
         </div>
       </section>
@@ -258,11 +258,11 @@ export default function Home() {
 
       <section className="trainer grid grid-cols-2 bg-red text-white max-md:flex max-md:flex-col max-md:gap-[50px]">
         <div className="min-h-[680px] overflow-hidden max-md:min-h-[500px] max-md:max-h-[560px]">
-          <img className="h-full w-full object-cover grayscale contrast-[1.1] mix-blend-multiply" src="/natasha-fitness-hero.png" alt="Наталья Короткая, тренер NatashaFIT" />
+          <img className="h-full w-full object-cover grayscale contrast-[1.1] mix-blend-multiply" src="/natasha-fitness-hero.png" alt="Наталья Фомина, тренер NatashaFIT" />
         </div>
         <div className="py-[10vw] px-[8vw] max-md:px-[7vw] max-md:py-[75px] max-md:pb-[95px]">
           <p className="mb-6 text-[10px] font-bold tracking-[.14em]">ВАШ ТРЕНЕР НА ЭТИ 5 ДНЕЙ</p>
-          <h2 className="heading-reveal font-serif text-[clamp(70px,8vw,125px)] font-semibold leading-[.93] tracking-[-.055em]">Наталья<br /><em className="not-italic text-white">Короткая</em></h2>
+          <h2 className="heading-reveal font-serif text-[clamp(70px,8vw,125px)] font-semibold leading-[.93] tracking-[-.055em]">Наталья<br /><em className="not-italic text-white">Фомина</em></h2>
           <h3 className="mx-0 mb-[26px] mt-[45px] max-w-[560px] font-serif text-[27px]/[1.1]">Я не хочу дать вам ещё пять тренировок. Я хочу, чтобы за эти 5 дней вы почувствовали разницу в теле и поняли, что делать дальше.</h3>
           <p className="mx-0 mb-[15px] max-w-[510px] text-[15px] leading-[1.5]">Более 10 лет я помогаю женщинам лучше чувствовать мышцы, понимать технику и тренировать тело не по частям, а комплексно.</p>
           <p className="mx-0 max-w-[510px] text-[15px] leading-[1.5]">На интенсиве мы пойдём шаг за шагом: от стоп до всего тела, чтобы вы понимали, зачем мы делаем упражнения и как это ведёт к результату.</p>
@@ -319,7 +319,7 @@ export default function Home() {
 
       <section className="nutrition w-full grid grid-cols-2 gap-[9vw] bg-foreground px-[1vw] py-[110px] text-cream max-md:flex max-md:flex-col max-md:gap-[50px] max-md:px-[7vw] max-md:py-[80px]">
         <div>
-          <p className="mb-6 text-[10px] font-bold tracking-[.14em]">БОНУС · 03 ОКТЯБРЯ · 12:00</p>
+          <p className="mb-6 text-[10px] font-bold tracking-[.14em]">БОНУС · 03 НОЯБРЯ· 12:00</p>
           <h2 className="heading-reveal font-serif text-[clamp(60px,8vw,120px)] font-semibold leading-[.93] tracking-[-.055em]">Спецэфир c<br /><em className="not-italic text-white">нутрициологом</em></h2>
           <h3 className="mx-0 mb-[18px] mt-[38px] max-w-[500px] font-serif text-[28px]/[1.1]">Как снизить вес на 3–10 кг и удерживать результат без постоянных диет, запретов и откатов</h3>
           <p className="mx-0 mb-[30px] max-w-[460px] text-[15px] leading-[1.55]">Чтобы снижать вес, одной тренировки недостаточно. Поэтому в интенсиве будет отдельный эфир с понятной системой питания и конкретными рекомендациями.</p>
@@ -422,7 +422,7 @@ export default function Home() {
         <a href="#top" className="flex flex-col font-serif text-[24px] font-bold leading-[.75] tracking-[-.06em]">
           Natasha<span className="text-red">FIT</span>
         </a>
-        <p className="m-0 text-[#777168]">Бесплатный online-интенсив Натальи Короткой</p>
+        <p className="m-0 text-[#777168]">Бесплатный online-интенсив Натальи Фоминой</p>
         <a href="#top">НАВЕРХ ↑</a>
       </footer>
 

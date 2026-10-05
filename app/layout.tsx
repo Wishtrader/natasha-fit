@@ -44,6 +44,13 @@ export default function RootLayout({
       <body className={`${bodyFont.variable} ${displayFont.variable} antialiased`}>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
+        <script
+          src="https://grillme.space/widget/chatbot-widget.js"
+          data-chatbot-id="b07be49d-f11f-45a8-80d4-536c0bb1436e"
+          data-api-url="https://grillme.space"
+          data-title="Natasha"
+          data-primary-color="#e8442f"
+        />
       </body>
     </html>
   )

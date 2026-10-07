@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import { ArrowUpRight, Check, HeartPulse, Play, Sparkles } from 'lucide-react'
+import { LeadForm } from '@/components/lead-form'
 
 const benefits = [
   ['01', 'МЕНЬШЕ ОТЁЧНОСТИ', 'Почувствуете больше лёгкости в ногах и теле после движения.'],
@@ -412,10 +413,7 @@ export default function Home() {
       <section className="bg-red px-[8vw] py-[145px] text-center text-white max-md:px-[7vw] max-md:py-[100px] max-md:pb-[130px]" id="register">
         <p className="mb-[30px] text-[10px] font-bold tracking-[.14em]">NATASHAFIT · СТАРТ 28 СЕНТЯБРЯ</p>
         <h2 className="heading-reveal font-serif text-[clamp(55px,8vw,125px)] font-semibold leading-[.93] tracking-[-.055em]">Дайте своему телу<br /><em className="text-foreground">5 дней</em> и почувствуйте<br />первые изменения сами</h2>
-        <a className="mt-[45px] inline-flex items-center bg-foreground px-[23px] py-[17px] text-[11px] font-bold tracking-[.12em] text-white transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-dark-red" href="#register">
-          ЗАРЕГИСТРИРОВАТЬСЯ
-          <ArrowUpRight className="ml-2" size={17} aria-hidden="true" />
-        </a>
+        <LeadForm />
       </section>
 
       <footer className="flex items-center justify-between px-[5vw] py-[25px] text-[11px] tracking-[.04em] max-md:flex-wrap max-md:gap-[18px] max-md:pb-[85px]">
